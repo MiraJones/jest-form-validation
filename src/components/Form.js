@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
+import fns from "./../utilities/fns"
 
 export default class Form extends React.Component {
     constructor(props) {
@@ -22,21 +23,10 @@ export default class Form extends React.Component {
         })
     }
 
-    ageCheck(age) {
-        age = +age;
-        if(typeof age !== 'number' || age > 110 || age < 18) return false;
-        return true;
-    }
-    emailCheck(email) {
-        let symbolIndex = email.indexOf('@');
-        if (symbolIndex === -1) return false;
-        return true;
-    }
-
     submitForm(e) {
         e.preventDefault();
         let {email, age} = this.state;
-        if (this.emailCheck(email) && this.ageCheck(age)) {
+        if (fns.emailCheck(email) && fns.ageCheck(age)) {
             alert('Signed up!')
         } else {
             alert('Problem with email and/or age.')
